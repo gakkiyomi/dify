@@ -1,6 +1,6 @@
-from flask_login import current_user  # type: ignore
-from flask_restful import marshal_with, reqparse  # type: ignore
-from flask_restful.inputs import int_range  # type: ignore
+from flask_login import current_user
+from flask_restful import marshal_with, reqparse
+from flask_restful.inputs import int_range
 from sqlalchemy.orm import Session
 from werkzeug.exceptions import NotFound
 
@@ -32,7 +32,7 @@ class ConversationListApi(InstalledAppResource):
 
         pinned = None
         if "pinned" in args and args["pinned"] is not None:
-            pinned = True if args["pinned"] == "true" else False
+            pinned = args["pinned"] == "true"
 
         try:
             with Session(db.engine) as session:

@@ -155,6 +155,14 @@ const translation = {
       removeConfirmContent: 'A configuração atual está em uso, removê-la desligará o recurso de Rastreamento.',
     },
     view: 'Vista',
+    opik: {
+      description: 'Opik é uma plataforma de código aberto para avaliar, testar e monitorar aplicativos LLM.',
+      title: 'Opik',
+    },
+    weave: {
+      description: 'Weave é uma plataforma de código aberto para avaliar, testar e monitorar aplicações de LLM.',
+      title: 'Trançar',
+    },
   },
   answerIcon: {
     descriptionInExplore: 'Se o ícone do WebApp deve ser usado para substituir 🤖 no Explore',
@@ -184,6 +192,23 @@ const translation = {
     byCategories: 'POR CATEGORIAS',
   },
   showMyCreatedAppsOnly: 'Mostrar apenas meus aplicativos criados',
+  appSelector: {
+    label: 'APLICAÇÃO',
+    noParams: 'Não são necessários parâmetros',
+    placeholder: 'Selecione um aplicativo...',
+    params: 'PARÂMETROS DO APLICATIVO',
+  },
+  structOutput: {
+    LLMResponse: 'Resposta do LLM',
+    configure: 'Configurar',
+    required: 'Requerido',
+    modelNotSupported: 'Modelo não suportado',
+    structured: 'Estruturado',
+    modelNotSupportedTip: 'O modelo atual não suporta esse recurso e é automaticamente rebaixado para injeção de prompt.',
+    structuredTip: 'Saídas Estruturadas é um recurso que garante que o modelo sempre gerará respostas que seguem o seu Esquema JSON fornecido.',
+    moreFillTip: 'Mostrando um máximo de 10 níveis de aninhamento',
+    notConfiguredTip: 'A saída estruturada ainda não foi configurada.',
+  },
 }
 
 export default translation

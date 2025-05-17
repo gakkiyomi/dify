@@ -160,6 +160,14 @@ const translation = {
       removeConfirmTitle: 'ลบการกําหนดค่า {{key}} หรือไม่?',
       removeConfirmContent: 'การกําหนดค่าปัจจุบันกําลังใช้งาน การลบออกจะเป็นการปิดคุณสมบัติการติดตาม',
     },
+    opik: {
+      title: 'โอปิก',
+      description: 'Opik เป็นแพลตฟอร์มโอเพ่นซอร์สสําหรับการประเมิน ทดสอบ และตรวจสอบแอปพลิเคชัน LLM',
+    },
+    weave: {
+      title: 'ทอ',
+      description: 'Weave เป็นแพลตฟอร์มโอเพนซอร์สสำหรับการประเมินผล ทดสอบ และตรวจสอบแอปพลิเคชัน LLM',
+    },
   },
   mermaid: {
     handDrawn: 'วาดด้วยมือ',
@@ -180,6 +188,23 @@ const translation = {
     byCategories: 'ตามหมวดหมู่',
   },
   showMyCreatedAppsOnly: 'แสดงเฉพาะแอปที่ฉันสร้าง',
+  appSelector: {
+    placeholder: 'เลือกแอป...',
+    params: 'พารามิเตอร์แอพ',
+    noParams: 'ไม่จําเป็นต้องใช้พารามิเตอร์',
+    label: 'แอพ',
+  },
+  structOutput: {
+    notConfiguredTip: 'ยังไม่ได้กำหนดผลลัพธ์ที่มีโครงสร้าง',
+    moreFillTip: 'แสดงระดับการซ้อนสูงสุด 10 ระดับ',
+    structuredTip: 'Structured Outputs เป็นฟีเจอร์ที่ทำให้มั่นใจว่าโมเดลจะสร้างคำตอบที่สอดคล้องกับ JSON Schema ที่คุณกำหนดไว้เสมอ',
+    configure: 'กำหนดค่า',
+    required: 'ที่จำเป็น',
+    LLMResponse: 'LLM ตอบสนอง',
+    structured: 'มีระเบียบ',
+    modelNotSupported: 'โมเดลไม่ได้รับการสนับสนุน',
+    modelNotSupportedTip: 'โมเดลปัจจุบันไม่รองรับฟีเจอร์นี้และจะถูกลดระดับเป็นการฉีดคำสั่งโดยอัตโนมัติ.',
+  },
 }
 
 export default translation

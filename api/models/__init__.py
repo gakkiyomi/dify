@@ -5,7 +5,6 @@ from .account import (
     InvitationCode,
     Tenant,
     TenantAccountJoin,
-    TenantAccountJoinRole,
     TenantAccountRole,
     TenantStatus,
 )
@@ -28,7 +27,7 @@ from .dataset import (
     Whitelist,
 )
 from .engine import db
-from .enums import CreatedByRole, UserFrom, WorkflowRunTriggeredFrom
+from .enums import CreatorUserRole, UserFrom, WorkflowRunTriggeredFrom
 from .model import (
     ApiRequest,
     ApiToken,
@@ -73,7 +72,6 @@ from .task import CeleryTask, CeleryTaskSet
 from .tools import (
     ApiToolProvider,
     BuiltinToolProvider,
-    PublishedAppTool,
     ToolConversationVariables,
     ToolFile,
     ToolLabelBinding,
@@ -114,7 +112,7 @@ __all__ = [
     "CeleryTaskSet",
     "Conversation",
     "ConversationVariable",
-    "CreatedByRole",
+    "CreatorUserRole",
     "DataSourceApiKeyAuthBinding",
     "DataSourceOauthBinding",
     "Dataset",
@@ -150,7 +148,6 @@ __all__ = [
     "ProviderOrder",
     "ProviderQuotaType",
     "ProviderType",
-    "PublishedAppTool",
     "RecommendedApp",
     "SavedMessage",
     "Site",
@@ -158,7 +155,6 @@ __all__ = [
     "TagBinding",
     "Tenant",
     "TenantAccountJoin",
-    "TenantAccountJoinRole",
     "TenantAccountRole",
     "TenantDefaultModel",
     "TenantPreferredModelProvider",

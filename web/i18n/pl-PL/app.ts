@@ -162,6 +162,14 @@ const translation = {
       removeConfirmContent: 'Obecna konfiguracja jest w użyciu, jej usunięcie wyłączy funkcję Śledzenia.',
     },
     view: 'Widok',
+    opik: {
+      description: 'Opik to platforma typu open source do oceny, testowania i monitorowania aplikacji LLM.',
+      title: 'Opik',
+    },
+    weave: {
+      title: 'Tkaj',
+      description: 'Weave to platforma open-source do oceny, testowania i monitorowania aplikacji LLM.',
+    },
   },
   answerIcon: {
     description: 'Czy w aplikacji udostępnionej ma być używana ikona aplikacji internetowej do zamiany 🤖.',
@@ -191,6 +199,23 @@ const translation = {
     byCategories: 'WEDŁUG KATEGORII',
   },
   showMyCreatedAppsOnly: 'Pokaż tylko moje utworzone aplikacje',
+  appSelector: {
+    params: 'PARAMETRY APLIKACJI',
+    noParams: 'Nie są potrzebne żadne parametry',
+    placeholder: 'Wybierz aplikację...',
+    label: 'Aplikacja',
+  },
+  structOutput: {
+    structured: 'Ustrukturyzowany',
+    LLMResponse: 'Odpowiedź LLM',
+    notConfiguredTip: 'Strukturalne wyjście nie zostało jeszcze skonfigurowane',
+    structuredTip: 'Strukturalne wyniki to funkcja, która zapewnia, że model zawsze generuje odpowiedzi zgodne z dostarczonym schematem JSON.',
+    moreFillTip: 'Pokazując maksymalnie 10 poziomów zagnieżdżenia',
+    configure: 'Konfiguruj',
+    required: 'Wymagane',
+    modelNotSupported: 'Model nie jest obsługiwany',
+    modelNotSupportedTip: 'Aktualny model nie obsługuje tej funkcji i zostaje automatycznie obniżony do wstrzyknięcia zapytania.',
+  },
 }
 
 export default translation

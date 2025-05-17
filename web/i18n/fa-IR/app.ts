@@ -159,6 +159,14 @@ const translation = {
       removeConfirmContent: 'پیکربندی فعلی در حال استفاده است، حذف آن ویژگی ردیابی را غیرفعال خواهد کرد.',
     },
     view: 'مشاهده',
+    opik: {
+      title: 'اوپیک',
+      description: 'Opik یک پلت فرم منبع باز برای ارزیابی، آزمایش و نظارت بر برنامه های LLM است.',
+    },
+    weave: {
+      title: 'بافندگی',
+      description: 'ویو یک پلتفرم متن باز برای ارزیابی، آزمایش و نظارت بر برنامه‌های LLM است.',
+    },
   },
   answerIcon: {
     descriptionInExplore: 'آیا از نماد WebApp برای جایگزینی 🤖 در Explore استفاده کنیم یا خیر',
@@ -184,6 +192,23 @@ const translation = {
     searchAllTemplate: 'همه قالب ها را جستجو کنید...',
   },
   showMyCreatedAppsOnly: 'فقط برنامه‌های ایجاد شده توسط من را نشان بده',
+  appSelector: {
+    params: 'پارامترهای برنامه',
+    noParams: 'بدون پارامتر مورد نیاز است',
+    label: 'برنامه',
+    placeholder: 'برنامه ای را انتخاب کنید...',
+  },
+  structOutput: {
+    required: 'ضروری',
+    modelNotSupported: 'مدل پشتیبانی نمی شود',
+    notConfiguredTip: 'خروجی ساختاری هنوز تنظیم نشده است',
+    structured: 'ساختار یافته',
+    configure: 'تنظیمات',
+    moreFillTip: 'نمایش حداکثر ۱۰ سطح تو در تو',
+    LLMResponse: 'پاسخ مدل زبان بزرگ',
+    modelNotSupportedTip: 'مدل فعلی این ویژگی را پشتیبانی نمی‌کند و به‌طور خودکار به تزریق درخواست تنزل پیدا می‌کند.',
+    structuredTip: 'خروجی‌های ساختاری یک ویژگی است که تضمین می‌کند مدل همیشه پاسخ‌هایی تولید می‌کند که به طرح JSON ارائه شده شما پایبند باشد.',
+  },
 }
 
 export default translation

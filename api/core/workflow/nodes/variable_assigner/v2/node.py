@@ -1,6 +1,8 @@
 import json
+from collections.abc import Sequence
 from typing import Any, cast
 
+from core.app.entities.app_invoke_entities import InvokeFrom
 from core.variables import SegmentType, Variable
 from core.workflow.constants import CONVERSATION_VARIABLE_NODE_ID
 from core.workflow.entities.node_entities import NodeRunResult
@@ -31,7 +33,7 @@ class VariableAssignerNode(BaseNode[VariableAssignerNodeData]):
         inputs = self.node_data.model_dump()
         process_data: dict[str, Any] = {}
         # NOTE: This node has no outputs
-        updated_variables: list[Variable] = []
+        updated_variable_selectors: list[Sequence[str]] = []
 
         try:
             for item in self.node_data.items:
@@ -62,7 +64,7 @@ class VariableAssignerNode(BaseNode[VariableAssignerNodeData]):
                 # Get value from variable pool
                 if (
                     item.input_type == InputType.VARIABLE
-                    and item.operation != Operation.CLEAR
+                    and item.operation not in {Operation.CLEAR, Operation.REMOVE_FIRST, Operation.REMOVE_LAST}
                     and item.value is not None
                 ):
                     value = self.graph_runtime_state.variable_pool.get(item.value)
@@ -98,7 +100,8 @@ class VariableAssignerNode(BaseNode[VariableAssignerNodeData]):
                     value=item.value,
                 )
                 variable = variable.model_copy(update={"value": updated_value})
-                updated_variables.append(variable)
+                self.graph_runtime_state.variable_pool.add(variable.selector, variable)
+                updated_variable_selectors.append(variable.selector)
         except VariableOperatorNodeError as e:
             return NodeRunResult(
                 status=WorkflowNodeExecutionStatus.FAILED,
@@ -107,21 +110,28 @@ class VariableAssignerNode(BaseNode[VariableAssignerNodeData]):
                 error=str(e),
             )
 
+        # The `updated_variable_selectors` is a list contains list[str] which not hashable,
+        # remove the duplicated items first.
+        updated_variable_selectors = list(set(map(tuple, updated_variable_selectors)))
+
         # Update variables
-        for variable in updated_variables:
-            self.graph_runtime_state.variable_pool.add(variable.selector, variable)
+        for selector in updated_variable_selectors:
+            variable = self.graph_runtime_state.variable_pool.get(selector)
+            if not isinstance(variable, Variable):
+                raise VariableNotFoundError(variable_selector=selector)
             process_data[variable.name] = variable.value
 
             if variable.selector[0] == CONVERSATION_VARIABLE_NODE_ID:
                 conversation_id = self.graph_runtime_state.variable_pool.get(["sys", "conversation_id"])
                 if not conversation_id:
-                    raise ConversationIDNotFoundError
+                    if self.invoke_from != InvokeFrom.DEBUGGER:
+                        raise ConversationIDNotFoundError
                 else:
                     conversation_id = conversation_id.value
-                common_helpers.update_conversation_variable(
-                    conversation_id=cast(str, conversation_id),
-                    variable=variable,
-                )
+                    common_helpers.update_conversation_variable(
+                        conversation_id=cast(str, conversation_id),
+                        variable=variable,
+                    )
 
         return NodeRunResult(
             status=WorkflowNodeExecutionStatus.SUCCEEDED,
@@ -155,5 +165,15 @@ class VariableAssignerNode(BaseNode[VariableAssignerNodeData]):
                 return variable.value * value
             case Operation.DIVIDE:
                 return variable.value / value
+            case Operation.REMOVE_FIRST:
+                # If array is empty, do nothing
+                if not variable.value:
+                    return variable.value
+                return variable.value[1:]
+            case Operation.REMOVE_LAST:
+                # If array is empty, do nothing
+                if not variable.value:
+                    return variable.value
+                return variable.value[:-1]
             case _:
                 raise OperationNotSupportedError(operation=operation, variable_type=variable.value_type)
